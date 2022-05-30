@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: level-02-run-
+spec:
+  taskRef:
+    name: level-01
+  params: 
+    - name: NAMESPACE
+      value: $(context.taskRun.namespace)
+    - name: IMAGE 
+      value: danielboothibm/pong:v1.01

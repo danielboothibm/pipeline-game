@@ -10,11 +10,21 @@ spec:
   steps:
     - name: play
       image: $(params.IMAGE)
+      env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
       script: |
         #! /bin/sh
 
         echo "Run the below command to play:"
-        echo "kubectl exec \$(kubectl -n $(params.NAMESPACE) get pod -l 'tekton.dev/task=level-01' -o jsonpath='{.items[*].metadata.name}') -- /bin/sh"
+        echo "kubectl exec --stdin --tty -n $(params.NAMESPACE) ${POD_NAME} -- /bin/sh"
+        echo ""
         echo -e "then type 'start'"
 
         i=0
@@ -28,7 +38,7 @@ spec:
                 echo "you lose :("
                 exit 1;
             fi
-            if [ -d cheat]; then
+            if [ -d cheat ]; then
               echo ";)"
               exit 0;
             fi
