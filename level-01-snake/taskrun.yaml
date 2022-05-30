@@ -1,12 +1,10 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: level-01-run
+  generateName: level-01-run-
 spec:
   taskRef:
     name: level-01
-  podTemplate:
-    schedulerName: volcano
-    securityContext:
-      runAsNonRoot: true
-      runAsUser: 1001
+  params: 
+    - name: NAMESPACE
+      value: $(context.taskRun.namespace)

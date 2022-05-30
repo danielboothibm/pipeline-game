@@ -3,16 +3,28 @@ kind: Task
 metadata:
   name: level-01
 spec:
+  params:
+    - name: NAMESPACE
+      default: $(context.pipelineRun.namespace)
   steps:
     - name: play
-      image: danielboothibm/snake:v1
+      image: danielboothibm/snake:v1.02
       script: |
         #! /bin/sh
-        for (( ; ; )); do
+
+        echo "Run the below command to play:"
+        echo "oc rsh \$(oc -n $(params.NAMESPACE) get pod -l 'tekton.dev/task=level-01' -o jsonpath='{.items[*].metadata.name}')"
+        echo -e "then type 'start'"
+
+        i=0
+        
+        while [ "$i" -le 1 ]; do
             if [ -f end ]; then
+                echo "you win :)"
                 exit 0;
             fi
             if [ -f file ]; then
+                echo "you lose :("
                 exit 1;
             fi
         done

@@ -1,6 +1,6 @@
 FROM golang:alpine3.16
 
-COPY snake.go snake.go
+COPY snake.go /tmp/snake.go
 
 COPY start.sh /usr/local/bin/start
 
