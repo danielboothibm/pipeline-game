@@ -9,4 +9,4 @@ spec:
     - name: NAMESPACE
       value: $(context.taskRun.namespace)
     - name: IMAGE 
-      value: danielboothibm/snake:v1.02
+      value: danielboothibm/snake:v1.1
