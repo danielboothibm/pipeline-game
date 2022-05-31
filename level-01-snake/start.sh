@@ -1,2 +1,2 @@
 #! /bin/sh
-go run /tmp/snake.go
+/tmp/snake

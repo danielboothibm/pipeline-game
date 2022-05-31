@@ -1,6 +1,6 @@
-FROM golang:alpine3.16
+FROM alpine:3.16.0
 
-COPY snake.go /tmp/snake.go
+COPY snake /tmp/snake
 
 COPY start.sh /usr/local/bin/start
 
