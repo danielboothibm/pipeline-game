@@ -38,7 +38,7 @@ spec:
                 echo "you lose :("
                 exit 1;
             fi
-            if [ -d cheat ]; then
+            if [ -d skip ]; then
               echo ";)"
               exit 0;
             fi
