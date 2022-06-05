@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  generateName: level-02-run-
+  generateName: level-03-run-
 spec:
   taskRef:
     name: level
@@ -9,4 +9,4 @@ spec:
     - name: NAMESPACE
       value: $(context.taskRun.namespace)
     - name: IMAGE 
-      value: danielboothibm/pong:v1.01
+      value: danielboothibm/pacman:v1

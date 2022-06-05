@@ -4,7 +4,7 @@ metadata:
   generateName: level-01-run-
 spec:
   taskRef:
-    name: level-01
+    name: level
   params: 
     - name: NAMESPACE
       value: $(context.taskRun.namespace)
