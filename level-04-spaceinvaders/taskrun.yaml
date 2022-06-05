@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: level-04-run-
+spec:
+  taskRef:
+    name: level
+  params: 
+    - name: NAMESPACE
+      value: $(context.taskRun.namespace)
+    - name: IMAGE 
+      value: danielboothibm/spaceinvaders:v1.1
