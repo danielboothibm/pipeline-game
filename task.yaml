@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
     - name: NAMESPACE
-      default: $(context.pipelineRun.namespace)
+      default: brownbag
     - name:  IMAGE
   steps:
     - name: play

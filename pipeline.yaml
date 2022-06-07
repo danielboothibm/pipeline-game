@@ -1,0 +1,55 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: game-pipeline
+spec:
+  params:
+  - name: snakeimage
+    type: string
+    default: danielboothibm/snake:v1.1
+  - name: pongimage
+    type: string
+    default: danielboothibm/pong:v1.01
+  - name: wordleimage
+    type: string
+    default: danielboothibm/wordle:v1
+  - name: spaceinvadersimage
+    type: string
+    default: danielboothibm/spaceinvaders:v1.1
+  - name: namespace
+    type: string
+  tasks:
+  - name: snake
+    params:
+    - name: IMAGE
+      value: $(params.snakeimage)
+    taskRef:
+      kind: Task
+      name: level
+  - name: pong
+    params:
+    - name: IMAGE
+      value: $(params.pongimage)
+    taskRef:
+      kind: Task
+      name: level
+    runAfter:
+      - snake
+  - name: wordle
+    params:
+    - name: IMAGE
+      value: $(params.wordleimage)
+    taskRef:
+      kind: Task
+      name: level
+    runAfter:
+      - pong
+  - name: spaceinvaders
+    params:
+    - name: IMAGE
+      value: $(params.spaceinvadersimage)
+    taskRef:
+      kind: Task
+      name: level
+    runAfter:
+     - wordle

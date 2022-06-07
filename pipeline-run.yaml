@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: game-pipeline-run-
+spec:
+  pipelineRef:
+    name: game-pipeline
+  params:
+    - name: namespace
+      value: $(context.pipelineRun.namespace)
+  serviceAccountName: default
